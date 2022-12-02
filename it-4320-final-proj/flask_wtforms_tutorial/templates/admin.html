@@ -7,7 +7,12 @@
 {% block content %}
 <div class="formwrapper">
   <h2 class="title">Administrator Login</h2>
-  
+  {# Prints whether passwords match #}
+  {% if validate -%}
+    <div id="validate_user">
+      <p>{{validate}}</p>
+    </div>
+  {% endif %}
   <form method="POST" action="/admin">
       {{ form.csrf_token }}
       <div class="form-field">{{ form.username.label }} {{ form.username }}
@@ -31,6 +36,5 @@
       
       {{ form.login }}
   </form>
-  
 </div>
 {% endblock %}

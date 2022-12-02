@@ -10,3 +10,4 @@ markupsafe==1.1.1
 python-dotenv==0.14.0
 werkzeug==1.0.1
 wtforms==2.3.3
+mysql-connector-python==8.0.31

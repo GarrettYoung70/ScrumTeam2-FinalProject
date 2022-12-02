@@ -11,3 +11,14 @@ services:
       - .:/project
     environment:
       FLASK_ENV: development
+  db:
+    image: mysql:latest
+    container_name: bus-trip-db
+    volumes: 
+      - "./sql:/var/lib/bus-trip-mysql"
+      - "./sql:/docker-entrypoint-initdb.d"
+    environment:
+      MYSQL_ROOT_PASSWORD: dbpass
+    ports:
+      - "3306:3306"
+    restart: always

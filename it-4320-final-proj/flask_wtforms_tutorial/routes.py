@@ -2,6 +2,7 @@ from flask import current_app as app
 from flask import redirect, render_template, url_for, request, flash
 
 from .forms import *
+from .db_connection_utility import *
 
 
 #@app.route("/", methods=['GET', 'POST'])
@@ -21,10 +22,25 @@ def user_options():
 
 @app.route("/admin", methods=['GET', 'POST'])
 def admin():
-
+    # Initialize validate variable
+    validate = ""
     form = AdminLoginForm()
-
-    return render_template("admin.html", form=form, template="form-template")
+    if(request.method == 'POST'):
+        if(form.validate_on_submit()):
+            # Get username and password from forms
+            username = request.form['username']
+            password = request.form['password']
+            
+            # Query database to see if username/password combo exists
+            if(query_db(username, password) == True):
+                # If username and password match entry listed in the mysql database
+                validate = "Logged success!"
+            else:
+                # If username and password do not match any entry listed in the mysql database
+                validate = "Incorrect username or password! Please try again."
+        pass
+    # Pass validate variable to render_template() to be rendered on web page
+    return render_template("admin.html", form=form, template="form-template", validate = validate)
 
 @app.route("/reservations", methods=['GET', 'POST'])
 def reservations():
@@ -32,4 +48,3 @@ def reservations():
     form = ReservationForm()
 
     return render_template("reservations.html", form=form, template="form-template")
-
