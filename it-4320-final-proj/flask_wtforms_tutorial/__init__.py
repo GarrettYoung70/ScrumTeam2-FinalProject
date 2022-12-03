@@ -14,3 +14,4 @@ def create_app():
         from . import routes
 
         return app
+

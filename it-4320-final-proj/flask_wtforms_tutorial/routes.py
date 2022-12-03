@@ -3,6 +3,7 @@ from flask import redirect, render_template, url_for, request, flash
 
 from .forms import *
 from .db_connection_utility import *
+from .cost_matrix import *
 
 
 #@app.route("/", methods=['GET', 'POST'])
@@ -46,5 +47,7 @@ def admin():
 def reservations():
 
     form = ReservationForm()
+    chart = getSeatingChart()
 
-    return render_template("reservations.html", form=form, template="form-template")
+    return render_template("reservations.html", form=form, template="form-template", chart=chart)
+
