@@ -25,6 +25,7 @@ def user_options():
 def admin():
     # Initialize validate variable
     validate = ""
+    chart = None
     form = AdminLoginForm()
     if(request.method == 'POST'):
         if(form.validate_on_submit()):
@@ -35,13 +36,15 @@ def admin():
             # Query database to see if username/password combo exists
             if(query_db(username, password) == True):
                 # If username and password match entry listed in the mysql database
-                validate = "Logged success!"
+                validate = "Printing Seating Chart..."
+                chart = getSeatingChart()
             else:
                 # If username and password do not match any entry listed in the mysql database
                 validate = "Incorrect username or password! Please try again."
+                chart = None
         pass
-    # Pass validate variable to render_template() to be rendered on web page
-    return render_template("admin.html", form=form, template="form-template", validate = validate)
+    # Pass validate variable and seating chart to render_template() to be rendered on web page
+    return render_template("admin.html", form=form, template="form-template", validate=validate, chart=chart)
 
 @app.route("/reservations", methods=['GET', 'POST'])
 def reservations():

@@ -2,18 +2,18 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/chart.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
 <div class="formwrapper">
   <h2 class="title">Reserve Your Seat</h2>
-  <div id="chart">
-    Seating Chart
-    <ul>
-      {% for seat in chart %}
-      <p>{{seat[0]}} , {{seat[1]}} , {{seat[2]}} , {{seat[3]}}<p>
-      {% endfor %}
-    </ul>
+  <p>Seating Chart</p>
+  <div class="chart">
+    {% for seat in chart %}
+      <p class="chart_text">{{seat[0]}} {{seat[1]}} {{seat[2]}} {{seat[3]}}<p>
+    {% endfor %}
+    
   </div>
   <form method="POST" action="/admin">
       {{ form.csrf_token }}
