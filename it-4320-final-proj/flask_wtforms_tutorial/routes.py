@@ -48,7 +48,7 @@ def admin():
 
 @app.route("/reservations", methods=['GET', 'POST'])
 def reservations():
-
+    
     form = ReservationForm()
     chart = getSeatingChart()
 
