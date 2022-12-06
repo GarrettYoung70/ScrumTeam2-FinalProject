@@ -21,6 +21,11 @@
       {% endfor %}
     </div>
   {% endif %}
+  {% if totalCost %}
+    <div class="totalCost">
+      <p class="cost_text">Total Sales: {{totalCost}}</p>
+    </div>
+  {% endif %}
   <form method="POST" action="/admin">
       {{ form.csrf_token }}
       <div class="form-field">{{ form.username.label }} {{ form.username }}

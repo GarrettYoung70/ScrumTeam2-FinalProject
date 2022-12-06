@@ -38,13 +38,15 @@ def admin():
                 # If username and password match entry listed in the mysql database
                 validate = "Printing Seating Chart..."
                 chart = getSeatingChart()
+                totalCost = getTotalCost()
             else:
                 # If username and password do not match any entry listed in the mysql database
                 validate = "Incorrect username or password! Please try again."
                 chart = None
+                totalCost = None
         pass
     # Pass validate variable and seating chart to render_template() to be rendered on web page
-    return render_template("admin.html", form=form, template="form-template", validate=validate, chart=chart)
+    return render_template("admin.html", form=form, template="form-template", validate=validate, chart=chart, totalCost=totalCost)
 
 @app.route("/reservations", methods=['GET', 'POST'])
 def reservations():
