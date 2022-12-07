@@ -54,6 +54,21 @@ def reservations():
     
     form = ReservationForm()
     chart = getSeatingChart()
+    if(request.method == 'POST'):
+        if(form.validate_on_submit()):
+            first_name = request.form['first_name']
+            #last_name = request.form['last_name']
+            row = int(request.form['row']) - 1 
+            seat = int(request.form['seat']) - 1
+            
+            #Yang Put code for Print Reservation here
+            resCode = 'testResCode'
+            
 
+            with open('reservations.txt', 'a') as f:
+                f.write(first_name + ', ' + str(row) + ', ' + str(seat) + ', ' + resCode + '\n')
+                f.close()
+            chart = getSeatingChart()
+        pass
     return render_template("reservations.html", form=form, template="form-template", chart=chart)
 
