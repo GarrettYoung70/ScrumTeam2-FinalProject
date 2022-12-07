@@ -23,7 +23,8 @@ def user_options():
 
 @app.route("/admin", methods=['GET', 'POST'])
 def admin():
-    # Initialize validate variable
+    # Initialize variables
+    totalCost = None
     validate = ""
     chart = None
     form = AdminLoginForm()
