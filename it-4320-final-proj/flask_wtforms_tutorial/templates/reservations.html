@@ -9,11 +9,17 @@
 <div class="formwrapper">
   <h2 class="title">Reserve Your Seat</h2>
   <p>Seating Chart</p>
+  {# Print seating chart #}
   <div class="chart">
     {% for seat in chart %}
       <p class="chart_text">{{seat[0]}} {{seat[1]}} {{seat[2]}} {{seat[3]}}<p>
     {% endfor %}
-    
+  </div>
+  {# Print error message if user tries to reserve a seat that has already been reserved #}
+  <div id="error">
+    {% if error %}
+    <p>{{error}}</p>
+    {% endif %}
   </div>
   <form method="POST" action="/reservations">
       {{ form.csrf_token }}

@@ -51,7 +51,7 @@ def admin():
 
 @app.route("/reservations", methods=['GET', 'POST'])
 def reservations():
-    
+    error = ""
     form = ReservationForm()
     chart = getSeatingChart()
     if(request.method == 'POST'):
@@ -61,14 +61,19 @@ def reservations():
             row = int(request.form['row']) - 1 
             seat = int(request.form['seat']) - 1
             
-            #Yang Put code for Print Reservation here
-            resCode = 'testResCode'
+            # If seat is already taken, print error message instead of writing to file
+            if(chart[row][seat] == "X"):
+                error = "Error! The requested seat has already been reserved! Please try again."
+            
+            # If seat is available, update file and chart
+            else:
+                #Yang Put code for Print Reservation here
+                resCode = 'testResCode'
             
 
-            with open('reservations.txt', 'a') as f:
-                f.write(first_name + ', ' + str(row) + ', ' + str(seat) + ', ' + resCode + '\n')
-                f.close()
-            chart = getSeatingChart()
-        pass
-    return render_template("reservations.html", form=form, template="form-template", chart=chart)
+                with open('reservations.txt', 'a') as f:
+                    f.write(first_name + ', ' + str(row) + ', ' + str(seat) + ', ' + resCode + '\n')
+                    f.close()
+                chart = getSeatingChart()
+    return render_template("reservations.html", form=form, template="form-template", chart=chart, error=error)
 
