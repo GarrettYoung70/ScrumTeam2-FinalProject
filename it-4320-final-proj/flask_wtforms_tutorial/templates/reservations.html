@@ -7,6 +7,38 @@
 
 {% block content %}
 <div class="formwrapper">
+  <span id="box1">
+    <a href=http://0.0.0.0:5002>Home</a> |
+  </span>
+
+  <span id="box2">
+    <a href=http://0.0.0.0:5002/admin>Admin</a> |
+  </span>
+
+  <span id="box3">
+    <a href=http://0.0.0.0:5002/reservations>Reservations</a>
+  </span>
+
+  <head>
+    <style>
+    #box1 {
+      outline: none;
+      text-decoration: none;
+      padding: 1px 1px 10px 406px;
+    }
+    #box2{
+      outline: none;
+      text-decoration: none;
+      padding: 1px 1px 1px 1px;
+    }
+    #box3 {
+      outline: none;
+      text-decoration: none;
+      padding: 1px 1px 1px 1px; 
+    }
+    </style>
+  </head>
+
   <h2 class="title">Reserve Your Seat</h2>
   <p>Seating Chart</p>
   {# Print seating chart #}
