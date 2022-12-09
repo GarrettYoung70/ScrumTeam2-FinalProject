@@ -52,6 +52,7 @@ def admin():
 @app.route("/reservations", methods=['GET', 'POST'])
 def reservations():
     error = ""
+    resCode = ""
     form = ReservationForm()
     chart = getSeatingChart()
     if(request.method == 'POST'):
@@ -68,12 +69,20 @@ def reservations():
             # If seat is available, update file and chart
             else:
                 #Yang Put code for Print Reservation here
-                resCode = 'testResCode'
+                key = "information"
+                code = list()
+                for i,c in enumerate(first_name):
+                    code.append(c)
+                    if i != len(first_name)-1:
+                        code.append(key[i])
+                code.append("TC1040")
+                resCode = "".join(code)
+                resCode = "Congratulations {name}！ Row: {row} Seat: {seat} is now reserved for you! Enjoy the trip! Your e-ticket number is : {resCode}".format(name=(request.form['first_name'] + " " + request.form['last_name']),row=str(row),seat=str(seat),resCode=resCode)
             
 
                 with open('reservations.txt', 'a') as f:
                     f.write(first_name + ', ' + str(row) + ', ' + str(seat) + ', ' + resCode + '\n')
                     f.close()
                 chart = getSeatingChart()
-    return render_template("reservations.html", form=form, template="form-template", chart=chart, error=error)
+    return render_template("reservations.html", form=form, template="form-template", chart=chart, resCode=resCode,error=error)
 
