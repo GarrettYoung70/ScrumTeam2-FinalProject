@@ -68,15 +68,15 @@ def reservations():
             
             # If seat is available, update file and chart
             else:
-                #Yang Put code for Print Reservation here
-                key = "information"
-                code = list()
-                for i,c in enumerate(first_name):
-                    code.append(c)
-                    if i != len(first_name)-1:
-                        code.append(key[i])
-                code.append("TC1040")
-                resCode = "".join(code)
+                key = "INFOTC4320"
+                resCode = ""
+                counter = 0
+                while counter<len(first_name) or counter<len(key):
+                    if counter<len(first_name):
+                        resCode+=first_name[counter]
+                    if counter<len(key):
+                        resCode+=key[counter]
+                    counter+=1
                 printResCode = "Congratulations {name}！ Row: {row} Seat: {seat} is now reserved for you! Enjoy the trip! Your e-ticket number is : {resCode}".format(name=(request.form['first_name'] + " " + request.form['last_name']),row=str(row),seat=str(seat),resCode=resCode)
             
 

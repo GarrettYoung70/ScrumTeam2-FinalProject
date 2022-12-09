@@ -50,6 +50,7 @@ def getTotalCost():
     seatingChart = getSeatingChart()
     rows = 12
     columns = 4
+    #Compare the seating chart and the cost matrix and add the price to the totalCost variable
     for i in range(rows):
         for j in range(columns):
             if seatingChart[i][j] == "X":
