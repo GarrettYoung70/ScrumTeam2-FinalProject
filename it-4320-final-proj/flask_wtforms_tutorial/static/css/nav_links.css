@@ -1,0 +1,23 @@
+/* Stylesheet for navigation links */
+.box1 {
+    outline: none;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.box2 {
+    outline: none;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.box3 {
+    outline: none;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-right: 10px; 
+}
+
+.nav_container {
+    float: right;
+}

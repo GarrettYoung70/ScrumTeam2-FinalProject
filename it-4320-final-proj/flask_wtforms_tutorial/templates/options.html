@@ -3,42 +3,13 @@
 {% block styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/nav_links.css') }} " rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block content %}
+{% block content %}  
 <div class="formwrapper">
-  <span id="box1">
-    <a href=http://0.0.0.0:5002>Home</a> |
-  </span>
-
-  <span id="box2">
-    <a href=http://0.0.0.0:5002/admin>Admin</a> |
-  </span>
-
-  <span id="box3">
-    <a href=http://0.0.0.0:5002/reservations>Reservations</a>
-  </span>
-
-  <head>
-    <style>
-    #box1 {
-      outline: none;
-      text-decoration: none;
-      padding: 1px 1px 10px 406px;
-    }
-    #box2{
-      outline: none;
-      text-decoration: none;
-      padding: 1px 1px 1px 1px;
-    }
-    #box3 {
-      outline: none;
-      text-decoration: none;
-      padding: 1px 1px 1px 1px; 
-    }
-    </style>
-  </head>
-
+  {# Import code for navigation links #}
+  {% include 'nav_links.html' %}
   <h2 class="title">IT-4320 Trip Reservation System</h2>
   <p>Welcome to the IT-4320 reservation system. Use the select box to choose whether to make a reservation or log in as an administrator.</p>
   <form method="POST" action="/">
