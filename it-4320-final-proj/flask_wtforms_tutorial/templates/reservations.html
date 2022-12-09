@@ -11,6 +11,11 @@
   {# Import code for navigation links #}
   {% include 'nav_links.html' %}
   <h2 class="title">Reserve Your Seat</h2>
+  <div id="resCode">
+    {% if resCode %}
+    <p>{{resCode}}</p>
+    {% endif %}
+  </div>
   <p>Seating Chart</p>
   {# Print seating chart #}
   <div class="chart">
